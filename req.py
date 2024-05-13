@@ -280,3 +280,50 @@ seafare_data = """{
     "format": "json-stat2"
   }
 }"""
+
+debt_data = """{
+  "query": [
+    {
+      "code": "Tunnusluku",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "Keskiarvo"
+        ]
+      }
+    },
+    {
+      "code": "Ikäryhmä",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "SS"
+        ]
+      }
+    },
+    {
+      "code": "Vuosi",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "2013",
+          "2016",
+          "2019"
+        ]
+      }
+    },
+    {
+      "code": "Tiedot",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "luototy",
+          "asuntm"
+        ]
+      }
+    }
+  ],
+  "response": {
+    "format": "json-stat2"
+  }
+}"""

@@ -33,24 +33,16 @@ def percentChangeOverTime(values):
         result.append(round(percentChange))
     return result
 
-#newData = loadData('https://pxdata.stat.fi:443/PxWeb/api/v1/sv/StatFin/asen/statfin_asen_pxt_11zs.px', req.sauna_data)
-#newData = loadData('https://pxdata.stat.fi:443/PxWeb/api/v1/sv/StatFin/asen/statfin_asen_pxt_11zs.px', req.sauna_data)
-#newData = loadData('https://pxdata.stat.fi:443/PxWeb/api/v1/sv/StatFin/asen/statfin_asen_pxt_11zs.px', req.sauna_data)
+#testData = loadData('https://pxdata.stat.fi:443/PxWeb/api/v1/sv/StatFin/vtutk/statfin_vtutk_pxt_136l.px', req.debt_data)
+#print(testData)
 
-seafareData = loadData('https://pxdata.stat.fi:443/PxWeb/api/v1/sv/StatFin/uvliik/statfin_uvliik_pxt_12it.px', req.seafare_data)
+########################
+#
+#   Question 9
+#
+########################
 
-seafareGoodsDict = seafareData["dimension"]["Tavaralaji"]["category"]["label"]
-seafareGoods = valueSelector(seafareGoodsDict)
 
-amountOfGoods = seafareData["value"]
-print(amountOfGoods) #10000 kg | 10 ton
-
-goodsResult = []
-for i in range(len(amountOfGoods)//2):
-    goodsResult.append(round(((amountOfGoods[2*i+1]/amountOfGoods[2*i])-1)*100, 2))
-highestChangeInGoods = max(goodsResult)
-
-lowestChangeInGoods = min(goodsResult)
 
 ########################
 #
@@ -87,6 +79,7 @@ print("#\n" + 100*"#")
 input("Tryck på enter för att se statistik...")
 print()
 
+#Visual representation of the data using a graph
 plt.figure(figsize=(12,6))
 plt.ylim((0, 5000))
 plt.title("Födslar år 2022")
@@ -101,7 +94,7 @@ print(100*"#" + "\n#")
 print("#\tFråga 2: Finns det variationer i resultatet från år 2013 till 2022?")
 print("#\n" + 100*"#" + "\n#")
 
-
+#
 listOfAnomalies = []
 for m in range(len(highestBirthMonthPerYear)):
     if highestBirthMonthPerYear[m] != highestMonth:
@@ -204,7 +197,7 @@ print("#\n" + 100*"#")
 input("Tryck på enter för att se statistik...")
 print()
 
-
+#Visual representation of the data using a graph
 plt.figure(figsize=(6,6))
 plt.ylim((0, 10))
 plt.title("Relativ procentuell skillnad mellan mäns och kvinnors valdeltagande i presidentvalen 1994-2024")
@@ -233,6 +226,7 @@ for e in range(0, len(parliamentParticipation), 2):
 input("Tryck på enter för att se statistik...")
 print()
 
+#Visual representation using a graph
 plt.figure(figsize=(6,6))
 plt.ylim((0, 10))
 plt.title("Relativ procentuell skillnad mellan mäns och kvinnors valdeltagande i riksdagsval 1995-2023")
@@ -245,7 +239,7 @@ print()
 
 ########################
 #
-#   Question 7 & 8
+#   Question 7
 #
 ########################
 
@@ -264,6 +258,7 @@ percentDistance = percentChangeOverTime(distance)
 input("Tryck på enter för att se statistik...")
 print()
     
+#Visual representation of the data using a graph with 2 y-axes
 fig,ax1 = plt.subplots()
 
 color = 'tab:blue'
@@ -281,6 +276,43 @@ ax2.tick_params(axis='y', labelcolor=color)
 ax2.set_ylim(-25,25)
 plt.title('Absolute Values and Percent Change Over Years')
 plt.show()
+
+input("Tryck på enter för att se nästa fråga...")
+print()
+
+########################
+#
+#   Question 8
+#
+########################
+
+seafareData = loadData('https://pxdata.stat.fi:443/PxWeb/api/v1/sv/StatFin/uvliik/statfin_uvliik_pxt_12it.px', req.seafare_data)
+
+seafareGoodsDict = seafareData["dimension"]["Tavaralaji"]["category"]["label"]
+seafareGoods = valueSelector(seafareGoodsDict)
+
+amountOfGoods = seafareData["value"]
+print(amountOfGoods) #10000 kg | 10 ton
+
+goodsResult = []
+for i in range(len(amountOfGoods)//2):
+    goodsResult.append(round(((amountOfGoods[2*i+1]/amountOfGoods[2*i])-1)*100, 2))
+highestChangeInGoods = max(goodsResult)
+lowestChangeInGoods = min(goodsResult)
+
+highestChangeInGoodsIndex = seafareGoods[goodsResult.index(highestChangeInGoods)]
+lowestChangeInGoodsIndex = seafareGoods[goodsResult.index(lowestChangeInGoods)]
+
+
+print(100*"#" + "\n")
+print("#\tFråga 8: Vilken varugrupp inom sjötransport (utrikes) upplevde den högsta förändringen mellan 2018 och 2023?")
+print("#\n" + 100*"#" + "\n#")
+print("#\tSvar: Varugruppen med störst förändring är " + str(highestChangeInGoodsIndex).lower() + " med " 
+      + str(highestChangeInGoods) + " %.")
+print("#\n" + 100*"#" + "\n")
+print("Varugruppen med den mista förändringen är " + str(lowestChangeInGoodsIndex).lower() + " med " 
+      + str(lowestChangeInGoods) + " %.")
+print("#\n" + 100*"#")
 
 input("Tryck på enter för att se nästa fråga...")
 print()
