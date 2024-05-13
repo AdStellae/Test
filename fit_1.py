@@ -305,12 +305,19 @@ lowestChangeInGoodsIndex = seafareGoods[goodsResult.index(lowestChangeInGoods)]
 
 
 print(100*"#" + "\n")
-print("#\tFråga 8: Vilken varugrupp inom sjötransport (utrikes) upplevde den högsta förändringen mellan 2018 och 2023?")
+print("#\tFråga 8: Vilken varugrupp inom sjötransport (utrikes) upplevde den högsta positiva förändringen mellan 2018 och 2023?")
 print("#\n" + 100*"#" + "\n#")
-print("#\tSvar: Varugruppen med störst förändring är " + str(highestChangeInGoodsIndex).lower() + " med " 
+print("#\tSvar: Varugruppen med den högsta förändringen är " + str(highestChangeInGoodsIndex).lower() + " med " 
       + str(highestChangeInGoods) + " %.")
 print("#\n" + 100*"#" + "\n")
-print("Varugruppen med den mista förändringen är " + str(lowestChangeInGoodsIndex).lower() + " med " 
+
+input("Tryck på enter för att se nästa fråga...")
+print()
+
+print(100*"#" + "\n")
+print("#\tFråga 9: Vilken varugrupp inom sjötransport (utrikes) upplevde den högsta negativa förändringen mellan 2018 och 2023?")
+print("#\n" + 100*"#" + "\n#")
+print("#\tSvar: Varugruppen med den högsta förändringen är " + str(lowestChangeInGoodsIndex).lower() + " med " 
       + str(lowestChangeInGoods) + " %.")
 print("#\n" + 100*"#")
 
